@@ -7,7 +7,7 @@ The 'master' branch is compiled to work with Kafka. The 'mapr' branch will work 
  
 ## Usage
 
-    $ mqtt-kafka-bridge [options...]
+    $ mqtt2kafka [options...]
 
 Where `options` are:
 
