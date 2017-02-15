@@ -35,6 +35,19 @@ Logging with SLF4J and the slf4j-log4j bridge implementation.
 
     $ java -Dlog4j.configuration=file:///path/to/log4j.properties -jar mqttKafkaBridge.jar [options...]
 
+## Testing that it works
+There is a very useful test.mosquitto.org server that is available to test publicly! If we combine with the [MapR Sandbox](https://www.mapr.com/products/mapr-sandbox-hadoop/download) it's possible to easily test this code on a live stream!
+
+start the sandbox VM on your computer, then open a terminal and logon to the sandbox (typically: `ssh -p 2222 localhost`):
+ 
+    # create a stream and topic
+    $ maprcli stream create -path /mqttstream
+    $ maprcli stream topic create -path /mqttstream -topic test
+    
+    # start piping messages from the test mqtt server to MapR Streams 
+    $ mqtt2kafka --id mqtt2kafka --uri tcp://test.mosquitto.org -t temp/random -s /mqttstream:test
+    
+    
 ## Acknowledgements
 This project is initially based on the `mqttKafkaBridge` project (https://github.com/jacklund/mqttKafkaBridge). Its last contribution was 4 years ago and it used the now very old Kafka 0.7 API. I initially forked the repo but at this point everything is rewritten and so I feel it makes more sense to create a new repo.
 

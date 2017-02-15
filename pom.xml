@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.m2mci</groupId>
 	<artifactId>mqttKafkaBridge</artifactId>
-    <version>0.2.0-mapr</version>
+    <version>1.0.0-mapr</version>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
