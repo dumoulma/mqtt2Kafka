@@ -32,6 +32,10 @@
                 <enabled>true</enabled>
             </releases>
         </repository>
+        <repository>
+            <id>Eclipse Paho Repo</id>
+            <url>https://repo.eclipse.org/content/repositories/paho-releases/</url>
+        </repository>
     </repositories>
 
     <dependencyManagement>

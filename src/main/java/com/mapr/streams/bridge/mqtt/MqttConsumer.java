@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 public class MqttConsumer implements AutoCloseable {
   private static final Logger logger = LoggerFactory.getLogger(MqttConsumer.class);
+  private static final int QOS_LEVEL = 0;
 
   private final MqttProperties p;
   private final MqttCallback callback;
@@ -24,22 +25,24 @@ public class MqttConsumer implements AutoCloseable {
 
   public void init() throws MqttException {
     try {
-      String url = p.getHostname() + ":" + p.getPort();
+      String url = String.format("%s:%d", p.getHostname(), p.getPort());
       logger.info("Opening MQTT connection: '{}'", url);
 
-      MqttConnectOptions connectOptions = new MqttConnectOptions();
-
+      MqttConnectOptions connOpt = new MqttConnectOptions();
       if (!p.getUsername().isEmpty()) {
-        connectOptions.setUserName(p.getUsername());
+        connOpt.setUserName(p.getUsername());
       }
       if (!p.getPassword().isEmpty()) {
-        connectOptions.setPassword(p.getPassword().toCharArray());
+        connOpt.setPassword(p.getPassword().toCharArray());
       }
+      connOpt.setAutomaticReconnect(true);
+      connOpt.setKeepAliveInterval(30);
+      connOpt.setCleanSession(true);
 
-      client = new MqttClient(url, p.getTopic(), new MemoryPersistence());
+      client = new MqttClient(url, p.getClientId(), new MemoryPersistence());
       client.setCallback(callback);
-      client.connect(connectOptions);
-      client.subscribe(p.getTopic());
+      client.connect(connOpt);
+      client.subscribe(p.getTopic(), QOS_LEVEL);
 
     } catch (MqttException e) {
       logger.error(e.getMessage(), e);

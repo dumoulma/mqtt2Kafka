@@ -8,26 +8,25 @@ import org.kohsuke.args4j.Option;
 
 import java.io.OutputStream;
 import java.io.PrintStream;
+import java.util.UUID;
 
+@SuppressWarnings("unused")
 public class CommandLineParser {
-  private static final String DEFAULT_MQTT_TOPIC = "temp/random";
-  private static final String DEFAULT_MQTT_SERVER_URI = "tcp://test.mosquitto.org";
-  private static final String DEFAULT_PORT = "1883";
-  private static final String DEFAULT_STREAMS_TOPIC = "/streams/my-stream:topic";
+  private static final int DEFAULT_MOSQUITTO_PORT = 1883;
 
   @Option(name = "--id", usage = "MQTT Client ID")
-  private String clientId = "mqttKafkaBridge";
+  private String clientId = UUID.randomUUID().toString().substring(0, 10);
 
   @Option(name = "--uri", required = true, usage = "MQTT Server URI)")
-  private String serverURI = DEFAULT_MQTT_SERVER_URI;
+  private String serverURI;
 
-  @Option(name = "--port", required = true, aliases = "-p", usage = "MQTT Server Port")
-  private String serverPort = DEFAULT_PORT;
+  @Option(name = "--port", aliases = "-p", usage = "MQTT Server Port")
+  private int serverPort = DEFAULT_MOSQUITTO_PORT;
 
-  @Option(name = "--input-topic", required = true, aliases = "-i", usage = "MQTT input topic")
-  private String mqttTopic = DEFAULT_MQTT_TOPIC;
+  @Option(name = "--topic", required = true, aliases = "-t", usage = "MQTT topic")
+  private String mqttTopic;
 
-  @Option(name = "--output-topic", required = true, aliases = "-o", usage = "MapR Streams output " +
+  @Option(name = "--streams-topic", required = true, aliases = "-s", usage = "MapR Streams output " +
           "topic (ex: /path:topic)")
   private String streamsTopic;
 
@@ -43,7 +42,7 @@ public class CommandLineParser {
   private CmdLineParser parser = new CmdLineParser(this);
 
   MqttProperties getMqttProperties() {
-    return new MqttProperties(serverURI, serverPort, username, password, clientId, mqttTopic);
+    return new MqttProperties(serverURI, serverPort, clientId, mqttTopic, username, password);
   }
 
   String getStreamsTopic() {
@@ -66,7 +65,7 @@ public class CommandLineParser {
 
   private void printUsage(OutputStream out) {
     PrintStream stream = new PrintStream(out);
-    stream.println("mqtt-kafka-bridge [options...]");
+    stream.println("mqtt2kafka [options...]");
     parser.printUsage(out);
     stream.println("\n*Note: test mosquitto server@ tcp://test.mosquitto.org:1883");
   }

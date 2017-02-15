@@ -1,6 +1,7 @@
 package com.mapr.streams.bridge;
 
 import com.mapr.streams.bridge.mqtt.MqttConsumer;
+import com.mapr.streams.bridge.mqtt.MqttProperties;
 import com.mapr.streams.bridge.mqtt.callback.ConnectionLostException;
 import com.mapr.streams.bridge.mqtt.callback.ProduceToStream;
 import com.mapr.streams.producer.BytesProducer;
@@ -21,15 +22,19 @@ public class Launcher {
     CommandLineParser parser = new CommandLineParser();
     parser.parse(args);
     logger.debug("Got: {}", parser);
+    final MqttProperties mqttProperties = parser.getMqttProperties();
+    logger.debug(mqttProperties.toString());
+
     try (StreamsProducer<String, byte[]> producer = new BytesProducer(parser.getStreamsTopic())) {
       ProduceToStream producerCallback = new ProduceToStream(producer);
-      MqttConsumer mqtt = new MqttConsumer(parser.getMqttProperties(), producerCallback);
+
+      MqttConsumer mqtt = new MqttConsumer(mqttProperties, producerCallback);
       logger.info("Initialization OK! Connecting to MQTT...");
       Runtime.getRuntime().addShutdownHook(new Thread(Launcher::stop));
       while (keepRunning) {
         try {
           mqtt.init();
-          logger.info("Connected to MQTT server, resuming");
+          logger.info("Connected to MQTT server");
         } catch (MqttException | ConnectionLostException e) {
           logger.warn("Reconnect failed, retrying in 10 seconds. msg={}", e.getMessage(), e);
         }

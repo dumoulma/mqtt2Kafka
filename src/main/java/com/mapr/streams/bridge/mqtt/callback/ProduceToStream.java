@@ -19,7 +19,7 @@ public class ProduceToStream implements MqttCallback {
 
   @Override
   public void connectionLost(Throwable throwable) throws ConnectionLostException {
-    logger.error("Lost connection to MQTT server", throwable);
+    logger.warn("Lost connection to MQTT server", throwable);
     throw new ConnectionLostException(throwable);
   }
 
