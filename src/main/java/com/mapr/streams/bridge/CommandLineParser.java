@@ -32,10 +32,10 @@ public class CommandLineParser {
   private String streamsTopic = DEFAULT_STREAMS_TOPIC;
 
   @Option(name = "--user", aliases = "-u", usage = "username")
-  private String username = DEFAULT_MQTT_TOPIC;
+  private String username = "";
 
   @Option(name = "--password", aliases = "-pw", usage = "password")
-  private String password = DEFAULT_MQTT_TOPIC;
+  private String password = "";
 
   @Option(name = "--help", aliases = "-h", usage = "Show help")
   private boolean showHelp = false;
