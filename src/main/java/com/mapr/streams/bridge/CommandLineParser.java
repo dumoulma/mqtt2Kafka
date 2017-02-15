@@ -18,18 +18,18 @@ public class CommandLineParser {
   @Option(name = "--id", usage = "MQTT Client ID")
   private String clientId = "mqttKafkaBridge";
 
-  @Option(name = "--uri", required = true, usage = "MQTT Server URI")
+  @Option(name = "--uri", required = true, usage = "MQTT Server URI)")
   private String serverURI = DEFAULT_MQTT_SERVER_URI;
 
-  @Option(name = "--port", required = true, aliases = "-p", usage = "MQTT Server Port (default: " +
-          "1883)")
+  @Option(name = "--port", required = true, aliases = "-p", usage = "MQTT Server Port")
   private String serverPort = DEFAULT_PORT;
 
-  @Option(name = "--input-topic", aliases = "-i", usage = "MQTT input topic")
+  @Option(name = "--input-topic", required = true, aliases = "-i", usage = "MQTT input topic")
   private String mqttTopic = DEFAULT_MQTT_TOPIC;
 
-  @Option(name = "--output-topic", aliases = "-o", usage = "MapR Streams output topic")
-  private String streamsTopic = DEFAULT_STREAMS_TOPIC;
+  @Option(name = "--output-topic", required = true, aliases = "-o", usage = "MapR Streams output " +
+          "topic (ex: /path:topic)")
+  private String streamsTopic;
 
   @Option(name = "--user", aliases = "-u", usage = "username")
   private String username = "";
