@@ -1,0 +1,7 @@
+2017-02-16 10:47:25,321 - DEBUG - Launcher: Got: CommandLineParser{clientId='', serverURI='tcp://test.mosquitto.org', serverPort='1883', mqttTopic='temp/random', streamsTopic='/streams:topic', username='', password='', showHelp=false, parser=org.kohsuke.args4j.CmdLineParser@1a93a7ca}
+2017-02-16 10:47:25,323 - DEBUG - Launcher: MqttProperties{hostname='tcp://test.mosquitto.org', port='1883', username='', password='', clientId='', clientId='', topic='temp/random'}
+2017-02-16 10:47:25,341 - INFO - Launcher: Initialization OK! Connecting to MQTT...
+2017-02-16 10:47:25,394 - INFO - MqttConsumer: Opening MQTT connection: 'tcp://test.mosquitto.org:1883'
+2017-02-16 10:47:26,731 - INFO - MqttConsumer: Init OK!
+2017-02-16 10:47:26,731 - INFO - Launcher: Connected to MQTT server
+2017-02-16 10:47:26,967 - DEBUG - ProduceToStream: messageArrived(): temp/random,25

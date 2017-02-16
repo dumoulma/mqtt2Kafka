@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.mapr.streams</groupId>
-	<artifactId>mqtt2kafka</artifactId>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mapr.streams</groupId>
+    <artifactId>mqtt2kafka</artifactId>
     <version>1.0.0-mapr</version>
 
     <properties>
@@ -44,12 +45,6 @@
                 <groupId>org.eclipse.paho</groupId>
                 <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
                 <version>${mqtt.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>org.scala-lang</groupId>
-                <artifactId>scala-library</artifactId>
-                <version>2.12.1</version>
             </dependency>
 
             <dependency>
@@ -116,10 +111,10 @@
 
     <!-- Dependencies -->
     <dependencies>
-		<dependency>
-			<groupId>org.eclipse.paho</groupId>
+        <dependency>
+            <groupId>org.eclipse.paho</groupId>
             <artifactId>org.eclipse.paho.client.mqttv3</artifactId>
-		</dependency>
+        </dependency>
 
         <dependency>
             <groupId>com.mapr.streams</groupId>
@@ -132,12 +127,6 @@
         </dependency>
 
         <dependency>
-			<groupId>org.scala-lang</groupId>
-			<artifactId>scala-library</artifactId>
-            <version>2.12.1</version>
-		</dependency>
-
-        <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-log4j12</artifactId>
         </dependency>
@@ -148,11 +137,11 @@
         </dependency>
 
         <dependency>
-			<groupId>args4j</groupId>
-			<artifactId>args4j</artifactId>
-		</dependency>
+            <groupId>args4j</groupId>
+            <artifactId>args4j</artifactId>
+        </dependency>
 
-		<dependency>
+        <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
@@ -166,25 +155,26 @@
             <groupId>org.hamcrest</groupId>
             <artifactId>hamcrest-all</artifactId>
             <scope>test</scope>
-		</dependency>
-	</dependencies>
+        </dependency>
+    </dependencies>
 
-	<!-- Plugins -->
-	<build>
-		<plugins>
-			<plugin>
-				<artifactId>maven-assembly-plugin</artifactId>
+    <!-- Plugins -->
+    <build>
+        <finalName>mqtt2kafka</finalName>
+        <plugins>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
                 <version>3.0.0</version>
-				<configuration>
-					<archive>
-						<manifest>
+                <configuration>
+                    <archive>
+                        <manifest>
                             <mainClass>com.mapr.streams.bridge.Launcher</mainClass>
-						</manifest>
-					</archive>
-					<descriptorRefs>
-						<descriptorRef>jar-with-dependencies</descriptorRef>
-					</descriptorRefs>
-				</configuration>
+                        </manifest>
+                    </archive>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                </configuration>
                 <executions>
                     <execution>
                         <id>make-assembly</id>
@@ -203,7 +193,7 @@
                 <configuration>
                     <!-- value of flags will be interpolated into the java invocation -->
                     <!-- as "java $flags -jar ..." -->
-                    <!--<flags>-Dlog.file=producer.log</flags>-->
+                    <!--<flags>-Dlog4j.configuration=file://path/to/log4j.properties</flags>-->
 
                     <!-- (optional) name for binary executable, if not set will just -->
                     <!-- make the regular jar artifact executable -->
@@ -227,6 +217,6 @@
                     </execution>
                 </executions>
             </plugin>
-		</plugins>
-	</build>
+        </plugins>
+    </build>
 </project>
