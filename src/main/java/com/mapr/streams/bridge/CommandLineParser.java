@@ -67,7 +67,9 @@ public class CommandLineParser {
     PrintStream stream = new PrintStream(out);
     stream.println("mqtt2kafka [options...]");
     parser.printUsage(out);
-    stream.println("\n*Note: test mosquitto server@ tcp://test.mosquitto.org:1883");
+    stream.println("\n*Note: for testing, you can use mosquitto public test server:\n" +
+                           "$ mqtt2kafka -t temp/random --uri tcp://test.mosquitto.org -s " +
+                           "<your output stream: /path:topic>");
   }
 
   @Override

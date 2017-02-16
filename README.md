@@ -11,16 +11,17 @@ The 'master' branch is compiled to work with Kafka. The 'mapr' branch will work 
 
 Where `options` are:
 
-    --help (-h)             : Show help (default: false)
-    --id VAL                : MQTT Client ID (default: mqttKafkaBridge)
-    --input-topic (-i) VAL  : MQTT input topic
-    --output-topic (-o) VAL : MapR Streams output topic (ex: /path:topic)
-    --password (-pw) VAL    : password (default: )
-    --port (-p) VAL         : MQTT Server Port
-    --uri VAL               : MQTT Server URI)
-    --user (-u) VAL         : username (default: )
+     --help (-h)              : Show help (default: true)
+     --id VAL                 : MQTT Client ID (default: 2c605ceb-3)
+     --password (-pw) VAL     : password (default: )
+     --port (-p) N            : MQTT Server Port (default: 1883)
+     --streams-topic (-s) VAL : MapR Streams output topic (ex: /path:topic)
+     --topic (-t) VAL         : MQTT topic
+     --uri VAL                : MQTT Server URI)
+     --user (-u) VAL          : username (default: )
 
-*Note: test mosquitto server@ tcp://test.mosquitto.org:1883
+    *Note: for testing, you can use mosquitto public test server:
+    $ mqtt2kafka -t temp/random --uri tcp://test.mosquitto.org -s <your output stream: /path:topic>
 
 If you don't specify any command-line options, it uses the following defaults:
 
