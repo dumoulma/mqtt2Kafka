@@ -40,7 +40,9 @@ To use a customized logging config (`log4j.properties`), it's necessary to launc
 *Note: assumes `mqtt2kafka-jar-with-dependencies.jar` is in the current directory.*
 
 ## Dependencies
-[Paho](http://www.eclipse.org/paho/) and [Kafka](http://kafka.apache.org/) and MapR Streams. 
+[Paho](http://www.eclipse.org/paho/) and [Kafka](http://kafka.apache.org/) and[]MapR Streams](https://www.mapr.com/products/mapr-streams).
+ 
+For a great intro to MapR Streams please check out [Getting Started with MapR Streams](https://www.mapr.com/blog/getting-started-sample-programs-mapr-streams) by Tug Grall.
 
 ## Testing with MapR Sandbox
 It's very easy to test this utility using the MapR Sandbox. Please [get it here for free](https://www.mapr.com/products/mapr-sandbox-hadoop).
