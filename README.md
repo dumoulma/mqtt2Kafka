@@ -6,7 +6,7 @@ the same topic.
 - The 'master' branch is compiled to work with MapR Streams. 
 - The 'apache-kafka-0.9' branch will work with Apache Kafka 0.9 (TODO).
 
-![solution diagram]()
+![solution diagram](https://github.com/dumoulma/mqtt2Kafka/blob/master/mqtt2kafka%20graphs.png)
  
 ## Usage
 
