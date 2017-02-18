@@ -5,6 +5,8 @@ the same topic.
 
 - The 'master' branch is compiled to work with MapR Streams. 
 - The 'apache-kafka-0.9' branch will work with Apache Kafka 0.9 (TODO).
+
+![solution diagram][https://community.mapr.com/servlet/JiveServlet/showImage/38-1242-63230/mqtt2kafka+graphs.png]
  
 ## Usage
 
